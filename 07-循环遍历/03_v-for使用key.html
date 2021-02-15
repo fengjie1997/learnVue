@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--    splice-->
+    <ul>
+        <li v-for="(item, index) in letters">{{ item + index }}</li>
+    </ul>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      info: {
+        name: 'why',
+        age: '18',
+        height: 1.88
+      },
+      letters: ['a', 'b', 'c', 'd'],
+      message: '你好啊'
+    }
+  })
+</script>
+</body>
+</html>

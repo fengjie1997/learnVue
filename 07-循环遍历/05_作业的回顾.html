@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--    splice-->
+    <ul>
+        <li v-for="(item, index) in letters">{{ item + index }}</li>
+    </ul>
+    <button @click="btnClick"></button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      info: {
+        name: 'why',
+        age: '18',
+        height: 1.88
+      },
+      movies: ['海王', '海贼王', '加勒比海盗', '海尔兄弟'],
+      message: '你好啊'
+    },
+    methods: {
+      btnClick() {
+        // push方法
+        // this.letters.push('aaa')
+        //  通过索引值修改
+        //   this.letters[0] = 'fj'
+        // pop()删除数组最后一个元素
+        //  shift()删除数组的第一个元素
+        //  unshift()数组最前面添加元素
+        //  splice(start, ):删除元素/插入元素/替换元素。 删除：第二个参数表示删几个,不传则删所有；替换：第二个参数表示要替换的，后续参数则是替换的值；插入：第二个参数需要为0
+        //   sort表示排序
+        //  reverse翻转
+        //  vue的set方法（要修改的对象， 索引值， 修改后的值）
+        Vue.set(this.letters, 0 , '2')
+      }
+    }
+  })
+</script>
+</body>
+</html>
