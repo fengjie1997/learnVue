@@ -11,11 +11,8 @@
 </style>
 <body>
 <div id="app">
-    <!--    splice-->
-    <ul>
-        <li v-for="(item, index) in movies" :class="{active: currentIndex === index}" @click="liClick(index)">{{ item + index }}</li>
-    </ul>
-    <button @click="btnClick"></button>
+    <input type="text" v-model="message">
+    {{message}}
 </div>
 <script src="../js/vue.js"></script>
 <script>
