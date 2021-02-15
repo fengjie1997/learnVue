@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .active {
+        color: red;
+    }
+</style>
+<body>
+<div id="app">
+<!--    1.修饰符lazy 失去焦点或者回车触发双向绑定-->
+    <input type="text" v-model.lazy="message">
+
+    <!--    1.修饰符number -->
+    <input type="number" v-model.number="age">
+
+    <!--    1.trim number -->
+    <input type="text" v-model.trim="license">
+    <h2>{{ license }}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      age: 2,
+      message: '你好啊',
+      license: ''
+    },
+    methods: {
+      liClick(index) {
+        this.currentIndex = index
+      },
+      btnClick() {
+      }
+    }
+  })
+</script>
+</body>
+</html>
