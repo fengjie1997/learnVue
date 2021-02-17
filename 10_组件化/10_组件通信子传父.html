@@ -4,32 +4,17 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<style>
-    .active {
-        color: red;
-    }
-</style>
 <body>
 <div id="app">
-    <cpn v-bind:cm="movies" v-bind:ct="title" :cinfo="info"></cpn>
+    <cpn @item-click="cpnClick"></cpn>
 </div>
 
 <!--template标签-->
 <template id="cpn">
     <div>
-        <ul>
-            <li v-for="item in cm">{{ item }}</li>
-        </ul>
-        <p>{{ cm }}</p>
-        <h2>{{ ct }}</h2>
+        <button v-for="item in categories" @click="btnClick(item)">{{item}}</button>
     </div>
 </template>
-<!--script中存放模板-->
-<!--<script type="text/x-template" id="cpn">-->
-<!--    <div>-->
-<!--        <h2>{{title}}</h2>-->
-<!--    </div>-->
-<!--</script>-->
 <script src="../js/vue.js"></script>
 <script>
     // 父传子props
@@ -37,17 +22,28 @@
     const cpn = {
       template: '#cpn',
       // props: ['cm', 'ct'],
-      data: {
-        info: {
-          name: ''
+      data() {
+        return {
+          categories: [
+            {
+              id: 'a',
+              name: '热门推荐'
+            },
+            {
+              id: 'd',
+              name: '家用家电'
+            }
+          ]
+        }
+
+      },
+      methods: {
+        btnClick(item) {
+          this.$emit('item-click', item)
+          console.log(item)
         }
       },
       props: {
-        cm: {
-          type: Array,
-          default: [],
-          required: true
-        },
         cinfo: {
           type: Object,
           default: () => {
@@ -74,6 +70,9 @@
     methods: {
       liClick(index) {
         this.currentIndex = index
+      },
+      cpnClick(item){
+        console.log('a', item)
       },
       btnClick() {
       }

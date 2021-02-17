@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <cpn :number1="num1" :number2="num2" @num1-change="num1Change"></cpn>
+</div>
+
+<!--template标签-->
+<template id="cpn">
+    <div>
+        <h2>props1:{{number1}}</h2>
+        <h2>data1:{{dataNumber1}}</h2>
+<!--        <input type="text" v-model="dataNumber1">-->
+        <input type="text" :value="dataNumber1" @input="inputDataNumber">
+        <!--        <input type="text" v-bind:value="dataNumber1" @input="dataNumber1 = $event.target.value">-->
+        <h2>props2:{{number1}}</h2>
+        <h2>data2:{{dataNumber2}}</h2>
+        <input type="text" v-model="dataNumber2">
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    // 父传子props
+    // props驼峰以-代替
+    const cpn = {
+      template: '#cpn',
+      // props: ['cm', 'ct'],
+      data() {
+        return {
+          dataNumber1: this.number1,
+          dataNumber2: this.number2
+        }
+      },
+      methods: {
+        inputDataNumber(event) {
+          // 1 将input的值同步至dataNumber1中
+          this.dataNumber1 = event.target.value
+          console.log(this.dataNumber1)
+          // 2 为了父组件中可修改值
+          this.$emit('num1-change', this.dataNumber1)
+
+          // 3 同时修饰dataNumber2的值
+          this.dataNumber2 = this.dataNumber1 * 100
+        },
+        btnClick(item) {
+          this.$emit('item-click', item)
+          console.log(item)
+        }
+      },
+      props: {
+        number1: Number,
+        number2: Number
+      }
+    }
+  const app = new Vue({
+    el: '#app',
+    data: {
+      num1: 1,
+      num2: 2,
+    },
+    components: {
+      cpn
+    },
+    methods: {
+      num1Change(value) {
+        console.log(value)
+        this.num1 = value * 1
+      },
+      liClick(index) {
+        this.currentIndex = index
+      },
+      cpnClick(item){
+        console.log('a', item)
+      },
+      btnClick() {
+      }
+    }
+  })
+</script>
+</body>
+</html>

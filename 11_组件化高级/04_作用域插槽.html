@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <cpn></cpn>
+
+    <cpn>
+        <!--    目的是获取子组件的data-->
+        <template slot-scope="slot">
+            <span>{{ slot.data.join() }} -</span>
+        </template>
+    </cpn>
+</div>
+
+<!--template标签-->
+<template id="cpn">
+    <div>
+        <slot :data="pLanguage">
+            <ul>
+                <li v-for="item in pLanguage">{{ item }}</li>
+            </ul>
+        </slot>
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      isShow: true
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        data() {
+          return {
+            pLanguage: ['JavaScript', 'C++', 'Python']
+          }
+        }
+      }
+    },
+    methods: {
+      // btnClick() {
+      //   console.log(this.$children)
+      // }
+    }
+  })
+</script>
+</body>
+</html>
